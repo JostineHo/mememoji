@@ -19,13 +19,15 @@ def load_data(sample_size=35887, usage='Training', labels =[0,3], filepath='../d
     df = pd.read_csv(filepath)
     df = df[:sample_size]
     X_train, y_train = subset_data(df, usage=usage, labels=labels)
-    num = [0,1,2,3,4,5,6]
     emotion = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
     for i, cat in enumerate(np.unique(y_train)):
-        y_train[np.where(y_train == cat)] = i
+        y_train[y_train == cat] = i
         print emotion[i] + ' is ' + str(i)
     return X_train, y_train
 
 if __name__ == '__main__':
-    X_train, y_train = load_data(sample_size=5000)
-    print len(y_train)
+    X_train, y_train = load_data(sample_size=35887)
+    np.save('X_train', X_train)
+    np.save('y_train', y_train)
+    print X_train.shape
+    print y_train.shape
