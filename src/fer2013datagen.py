@@ -4,6 +4,11 @@ import numpy as np
 import random
 import sys
 
+# fer2013 dataset:
+# Training       28709
+# PrivateTest     3589
+# PublicTest      3589
+
 # emotion labels from FER2013:
 emotion = {'Angry': 0, 'Disgust': 1, 'Fear': 2, 'Happy': 3,
            'Sad': 4, 'Surprise': 5, 'Neutral': 6}
@@ -17,7 +22,7 @@ def reconstruct(pix_str, size=(48,48)):
 def emotion_count(y_train, classes, verbose=True):
     emo_classcount = {}
     print 'Disgust classified as Angry'
-    y_train.loc[y_train == 1] = 0 
+    y_train.loc[y_train == 1] = 0
     classes.remove('Disgust')
     for new_num, _class in enumerate(classes):
         y_train.loc[(y_train == emotion[_class])] = new_num
@@ -30,6 +35,8 @@ def emotion_count(y_train, classes, verbose=True):
 def load_data(sample_split=0.3, usage='Training', to_cat=True, verbose=True,
               classes=['Angry','Happy'], filepath='../data/fer2013.csv'):
     df = pd.read_csv(filepath)
+    # print df.tail()
+    # print df.Usage.value_counts()
     df = df[df.Usage == usage]
     frames = []
     classes.append('Disgust')
@@ -60,10 +67,10 @@ if __name__ == '__main__':
            'Sad', 'Surprise', 'Neutral']
     X_train, y_train, emo_dict = load_data(sample_split=1.0,
                                            classes=emo,
-                                           usage='Training',
+                                           usage='PrivateTest',
                                            verbose=True)
     print 'Saving...'
-    save_data(X_train, y_train, fname='6')
+    save_data(X_train, y_train, fname='_privatetest6_100pct')
     print X_train.shape
     print y_train.shape
     print 'Done!'

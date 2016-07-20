@@ -37,15 +37,15 @@ def cnn_architecture(X_train, y_train, conv_arch=[(32,3),(64,3),(128,3)],
     describe(X_shape, y_shape, batch_size, dropout, nb_epoch, conv_arch, dense)
 
     # data augmentation:
-    # X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=validation_split)
-    # datagen = ImageDataGenerator(rescale=1./255,
-    #                              rotation_range=10,
-    #                              shear_range=0.2,
-    #                              width_shift_range=0.2,
-    #                              height_shift_range=0.2,
-    #                              horizontal_flip=True)
+    X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=validation_split)
+    datagen = ImageDataGenerator(rescale=1./255,
+                                 rotation_range=10,
+                                 shear_range=0.2,
+                                 width_shift_range=0.2,
+                                 height_shift_range=0.2,
+                                 horizontal_flip=True)
 
-    # datagen.fit(X_train)
+    datagen.fit(X_train)
     # model architecture:
     model = Sequential()
     model.add(Convolution2D(conv_arch[0][0], 3, 3, border_mode='same', activation='relu',input_shape=(1, X_train.shape[2], X_train.shape[3])))
@@ -84,12 +84,12 @@ def cnn_architecture(X_train, y_train, conv_arch=[(32,3),(64,3),(128,3)],
 
     print 'Training....'
     # fits the model on batches with real-time data augmentation:
-    # hist = model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size),
-    #                 samples_per_epoch=len(X_train), nb_epoch=nb_epoch, validation_data=(X_test,y_test), callbacks=callbacks, verbose=1)
+    hist = model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size),
+                    samples_per_epoch=len(X_train), nb_epoch=nb_epoch, validation_data=(X_test,y_test), callbacks=callbacks, verbose=1)
 
     '''without data augmentation'''
-    hist = model.fit(X_train, y_train, nb_epoch=nb_epoch, batch_size=batch_size,
-              validation_split=validation_split, callbacks=callbacks, shuffle=True, verbose=1)
+    # hist = model.fit(X_train, y_train, nb_epoch=nb_epoch, batch_size=batch_size,
+    #           validation_split=validation_split, callbacks=callbacks, shuffle=True, verbose=1)
 
     # model result:
     train_val_accuracy = hist.history
