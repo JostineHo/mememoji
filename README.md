@@ -3,7 +3,7 @@
 *A facial emotion recognition system built with deep convolutional neural network*
 
 ## Table of Contents
-1. [Motivation](#1.-motivation)
+1. [Motivation](#1.motivation)
 2. [The Database](#the-database)
 3. [The Model](#the-model)
 	* [3.1 Input Layer](#input-layer)
@@ -20,7 +20,7 @@
 7. [About the Author](#about-the-author)
 8. [References](#references)
 
-##1. Motivation
+## 1.Motivation
 ------------------------------
 Most of us would agree that human facial expressions can be classified into roughly 7 basic emotions: happy, sad, surprise, fear, anger, disgust, and neutral. Our facial emotions are expressed through activation of specific sets of facial muscles. These sometimes subtle, yet complex, signals in an expression often contain an abundant amount of information about the state of mind. Through facial emotion recognition, we are able to gauge the **true effects** content and services have on the audience/users in a easy and low-cost way. For example, a content provider could use these metrics to measure **user engagement**, instead of sending out surveys. The medical community can benefit from monitoring facial emotions to evaluate the **condition of a patient** in order to provide better services.
 
