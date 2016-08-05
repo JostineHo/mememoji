@@ -3,25 +3,24 @@
 *A facial emotion recognition system built with deep convolutional neural network*
 
 ## Table of Contents
-1. [Motivation](#1.motivation)
-2. [The Database](#the-database)
-3. [The Model](#the-model)
+1. [Motivation](#1-motivation)
+2. [The Database](#2-the-database)
+3. [The Model](#3-the-model)
 	* [3.1 Input Layer](#input-layer)
 	* [3.2 Convolutional Layers](#convolutional-layers)  
 	* [3.3 Dense Layers](#dense-layers)
 	* [3.4 Output Layer](#output-layer)
 	* [3.5 Challenges](#challenges)
-4. [Model Validation](#model-validation)
-5. [Applications](#applications) 
+4. [Model Validation](#4-model-validation)
+5. [Applications](#5-applications) 
 	* [5.1 RESTful API](#RESTful-API)
 	* [5.2 Interactive Web App](#interactive-web-app)
 	* [5.3 Real-Time Video Prediction](#real-time-video-prediction)
-6. [Next Steps](#next-steps)
-7. [About the Author](#about-the-author)
-8. [References](#references)
+6. [Next Steps](#6-next-steps)
+7. [About the Author](#7-about-the-author)
+8. [References](#8-references)
 
-## 1.Motivation
-------------------------------
+## 1 Motivation
 Most of us would agree that human facial expressions can be classified into roughly 7 basic emotions: happy, sad, surprise, fear, anger, disgust, and neutral. Our facial emotions are expressed through activation of specific sets of facial muscles. These sometimes subtle, yet complex, signals in an expression often contain an abundant amount of information about the state of mind. Through facial emotion recognition, we are able to gauge the **true effects** content and services have on the audience/users in a easy and low-cost way. For example, a content provider could use these metrics to measure **user engagement**, instead of sending out surveys. The medical community can benefit from monitoring facial emotions to evaluate the **condition of a patient** in order to provide better services.
 
 > **“2016 is the year when machines learn to grasp human emotions”**
@@ -29,8 +28,7 @@ Most of us would agree that human facial expressions can be classified into roug
 
 Human beings are well-trained in reading the emotions of others, in fact, at just 14 months old, babies can already tell the difference between happy and sad. **But can computers do a better job than humans in accessing emotional states?** To answer the question, I designed a deep learning neural network that gives machines the ability to make inferences about our emotional states. In other words, I give them eyes to see what we see.
 
-##2. The Database
-------------------------------
+## 2 The Database
 The dataset I used for training the model is from a Kaggle Facial Expression Recognition Challenge a few years back (FER2013). It comprises a total of 35887 pre-cropped, 48-by-48-pixel grayscale images of faces each labeled with one of the 7 emotion classes: anger, disgust, fear, happiness, sadness, surprise, and neutral. 
 
 ![FER2013](figures/fer2013.png)
@@ -41,8 +39,7 @@ As I was exploring the dataset, I discovered an imbalance of the “disgust” c
 ![FER2013](figures/trainval_distribution.png)
 #####Figure 2. Training and validation data distribution.
 
-##3. The Model
-------------------------------
+## 3 The Model
 ![Mr.Bean](figures/mrbean.png)
 #####Figure 3. Mr. Bean, the model for the model.
 
@@ -92,8 +89,7 @@ As a result, the feature maps become increasingly abstract down the pipeline whe
 #####Figure 7. CNN (128-filter) feature maps after 3nd layer of max-pooling.
 
 
-##4. Model Evaluation
-----------------------------
+## 4 Model Validation
 ![60percent](figures/works_every_time.png)
 
 As it turns out, the final CNN had a validation accuracy of 58%. This makes a lot of sense, because it is hard to use one label to classify each facial expression. Our expressions usually consist a combination of emotions. When the model predicts incorrectly on one label, the correct label is often the second most likely emotion as in examples in Figure 8 with blue labels.
@@ -109,9 +105,7 @@ As it turns out, the final CNN had a validation accuracy of 58%. This makes a lo
 ![CM](figures/confusion_matrix.png)
 #####Figure 10. Confusion matrix for true and prediction emotion counts.
 
-##5. Applications
-----------------------------
-
+## 5 Applications
 ![system](figures/system.png)
 #####Figure 9. Application pipeline.
 
@@ -134,17 +128,16 @@ I built 3 applications around this project.
 - Find source code here [link]
 - requirements...
 
-##6. Next Steps
-----------------------------
+## 6 Next Steps
 
 (to be continued...)
 
-##7. About the Author
-----------------------------
+## 7 About the Author
+
 **Jostine Ho** is a data scientist who loves building intelligent applications and exploring the exciting possibilities using deep learning. She is interested in computer vision and automation that creates innovative solutions to real-world problems. She holds a masters degree in Petroleum & Geosystems Engineering at The University of Texas at Austin. You can find her on [LinkedIn](https://www.linkedin.com/in/jostinefho)
 
-##8. References
-----------------------------
+## 8 References
+
 1. [Facial Emotion Recognition (FER2013) Kaggle dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
 
 2. [Andrej Karpathy's cs231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
