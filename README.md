@@ -3,7 +3,7 @@
 *A facial emotion recognition system built with deep convolutional neural network*
 
 ## Table of Contents
-1. [Motivation](#motivation)
+1. [Motivation](#1.-motivation)
 2. [The Database](#the-database)
 3. [The Model](#the-model)
 	* [3.1 Input Layer](#input-layer)
