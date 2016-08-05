@@ -1,4 +1,5 @@
-![](https://github.com/JostineHo/mememoji/blob/master/figures/cover.png)
+
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/cover.png" alt="alt text" align="middle"/>
 
 *A facial emotion recognition system built with deep convolutional neural network*
 
@@ -31,17 +32,19 @@ Human beings are well-trained in reading the emotions of others, in fact, at jus
 ## 2 The Database
 The dataset I used for training the model is from a Kaggle Facial Expression Recognition Challenge a few years back (FER2013). It comprises a total of 35887 pre-cropped, 48-by-48-pixel grayscale images of faces each labeled with one of the 7 emotion classes: anger, disgust, fear, happiness, sadness, surprise, and neutral. 
 
-![FER2013](figures/fer2013.png)
-#####Figure 1. An overview of FER2013.
+
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/fer2013.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 1. An overview of FER2013.</h4>
 
 As I was exploring the dataset, I discovered an imbalance of the “disgust” class (only 113 samples) compared to many samples of other classes. I decided to merge disgust into anger given that they both represent similar sentiment. To prevent testing set leakage, I built a data generator `fer2013datagen.py` that can easily separate training and hold-out set to different files. I used 28709 labeled faces as the training set and held out the rest (3589+3589) for after-training validation. The resulting is a 6-class, balanced dataset, shown in Figure x, that contains angry, fear, happy, sad, surprise, and neutral. Now we’re ready to train.
 
-![FER2013](figures/trainval_distribution.png)
-#####Figure 2. Training and validation data distribution.
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/trainval_distribution.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 2. Training and validation data distribution.</h4>
 
 ## 3 The Model
 ![Mr.Bean](figures/mrbean.png)
-#####Figure 3. Mr. Bean, the model for the model.
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/mrbean.png" alt="alt text" align="middle"/>
+<h4 align="center"> Figure 3. Mr. Bean, the model for the model.</h4>
 
 Deep learning is a popular technique used in computer vision. I chose convolutional neural network (CNN) layers as building blocks in creating my model architecture. CNNs are known to imitate how the human brain works on the back end when analyzing visuals. I will use a picture of Mr. Bean as an example to explain how images are fed into the model, because who doesn’t love Mr. Bean? 
 
