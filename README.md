@@ -8,15 +8,15 @@
 2. [The Database](#2-the-database)
 3. [The Model](#3-the-model)
 	* [3.1 Input Layer](#31-input-layer)
-	* [3.2 Convolutional Layers](#convolutional-layers)  
-	* [3.3 Dense Layers](#dense-layers)
-	* [3.4 Output Layer](#output-layer)
-	* [3.5 Challenges](#challenges)
+	* [3.2 Convolutional Layers](#32-convolutional-layers)  
+	* [3.3 Dense Layers](#33-dense-layers)
+	* [3.4 Output Layer](#34-output-layer)
+	* [3.5 Challenges](#35-challenges)
 4. [Model Validation](#4-model-validation)
 5. [Applications](#5-applications) 
-	* [5.1 RESTful API](#RESTful-API)
-	* [5.2 Interactive Web App](#interactive-web-app)
-	* [5.3 Real-Time Video Prediction](#real-time-video-prediction)
+	* [5.1 RESTful API](#51-restful-api)
+	* [5.2 Interactive Web App](#52-interactive-web-app)
+	* [5.3 Real-Time Video Prediction](#53-real-time-video-prediction)
 6. [Next Steps](#6-next-steps)
 7. [About the Author](#7-about-the-author)
 8. [References](#8-references)
@@ -32,9 +32,10 @@ Human beings are well-trained in reading the emotions of others, in fact, at jus
 ## 2 The Database
 The dataset I used for training the model is from a Kaggle Facial Expression Recognition Challenge a few years back (FER2013). It comprises a total of 35887 pre-cropped, 48-by-48-pixel grayscale images of faces each labeled with one of the 7 emotion classes: anger, disgust, fear, happiness, sadness, surprise, and neutral. 
 
-
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/fer2013.png" alt="alt text" align="middle"/>
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/fer2013.png" width="500" align="middle"/>
 <h4 align="center">Figure 1. An overview of FER2013.</h4>
+</p>
 
 As I was exploring the dataset, I discovered an imbalance of the “disgust” class (only 113 samples) compared to many samples of other classes. I decided to merge disgust into anger given that they both represent similar sentiment. To prevent testing set leakage, I built a data generator `fer2013datagen.py` that can easily separate training and hold-out set to different files. I used 28709 labeled faces as the training set and held out the rest (3589+3589) for after-training validation. The resulting is a 6-class, balanced dataset, shown in Figure x, that contains angry, fear, happy, sad, surprise, and neutral. Now we’re ready to train.
 
@@ -42,9 +43,10 @@ As I was exploring the dataset, I discovered an imbalance of the “disgust” c
 <h4 align="center">Figure 2. Training and validation data distribution.</h4>
 
 ## 3 The Model
-![Mr.Bean](figures/mrbean.png)
+<p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/mrbean.png" alt="alt text" align="middle"/>
 <h4 align="center"> Figure 3. Mr. Bean, the model for the model.</h4>
+</p>
 
 Deep learning is a popular technique used in computer vision. I chose convolutional neural network (CNN) layers as building blocks in creating my model architecture. CNNs are known to imitate how the human brain works on the back end when analyzing visuals. I will use a picture of Mr. Bean as an example to explain how images are fed into the model, because who doesn’t love Mr. Bean? 
 
@@ -58,8 +60,10 @@ A typical architecture of a convolutional neural network has an input layer, con
 * The numpy array gets passed into the `Convolution2D` layer where I specify the number of filters as one of the hyperparameters. The **set of filters** (aka. kernel) are non-repetitive with randomly generated weights. Each filter, (3, 3) receptive field, slides across the original image with shared weights to create a new feature map. 
 *  The convolution step generates **feature maps** that represent the unique ways pixel values are enhanced, for example, edge and pattern detection. In Figure 4, a feature map is created by applying filter 1 across the entire image. Other filters are applied one after another creating a set of feature maps. 
 
-![Mr.Bean](figures/conv_maxpool.png)
-#####Figure 4. Convolution and 1st max-pooling used in the network.
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv_maxpool.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 4. Convolution and 1st max-pooling used in the network</h4>
+</p>
 
 * **Pooling** is a dimension reduction technique usually applied after one or several convolutional layers. It is an important step when building CNNs as adding more convolutional layers can greatly affect computation time. I used a popular method called `MaxPooling2D` that uses (2, 2) windows each time only to keep the maximum pixel value. As seen in Figure 4, max-pooling on the (2, 2) square sections across the feature map results in a dimension reduction by 4.
 
@@ -76,41 +80,58 @@ A typical architecture of a convolutional neural network has an input layer, con
 ###3.5 Challenges
 To begin with, I built a simple version of the CNN: input, convolution, dense, and output layer. As it turns out, the simple model preformed terribly. The low accuracy of 0.1500 shows that it is merely random guessing an emotion. The model is too simple to pick up the subtle details in facial expressions. This could only mean one thing…
 
-![inception](figures/inception.png)
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/inception.png" alt="alt text" align="middle"/>
+</p>
 
 This is the where deep learning comes in. Given the pattern complexity of facial expressions, it is necessary to build with a deeper architecture in order to pick up enough signals. So I tested various net architectures that goes from complex to more complex. I played around with three components: number of convolutional layers, portions of dropout, and number of dense layers. In the end, my final net architecture was 9 layers deep in convolution with one max-pooling after every three convolution layers as seen in figure below. 
 
-![netarch](figures/netarch.png)
-#####Figure 5. Facial Emotion Recognition CNN Architecture.
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 5. Facial Emotion Recognition CNN Architecture.</h4>
+</p>
 
 As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 6 and 7 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. 
 
-![2Pool](figures/conv64pool2.png)
-#####Figure 6. CNN (64-filter) feature maps after 2nd layer of max-pooling.
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv64pool2.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 6. CNN (64-filter) feature maps after 2nd layer of max-pooling.</h4>
+</p>
 
-![3Pool](figures/conv128pool3.png)
-#####Figure 7. CNN (128-filter) feature maps after 3nd layer of max-pooling.
-
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 7. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
+</p>
 
 ## 4 Model Validation
-![60percent](figures/works_every_time.png)
+
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/works_every_time.png" alt="alt text" align="middle"/>
+</p>
 
 As it turns out, the final CNN had a validation accuracy of 58%. This makes a lot of sense, because it is hard to use one label to classify each facial expression. Our expressions usually consist a combination of emotions. When the model predicts incorrectly on one label, the correct label is often the second most likely emotion as in examples in Figure 8 with blue labels.
 
-![many faces](figures/predictions.png)
-#####Figure 8. Random 24 examples in test set validation.
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/predictions.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 8. Random 24 examples in test set validation.</h4>
+</p>
 
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 9. True emotion label and model prediction count on test set.</h4>
+</p>
 
-![true](figures/true_pred.png)
-#####Figure 9. True emotion label and model prediction count on test set.
-
-
-![CM](figures/confusion_matrix.png)
-#####Figure 10. Confusion matrix for true and prediction emotion counts.
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
+</p>
 
 ## 5 Applications
-![system](figures/system.png)
-#####Figure 9. Application pipeline.
+
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" alt="alt text" align="middle"/>
+<h4 align="center">Figure 11. Application pipeline.</h4>
+</p>
 
 I built 3 applications around this project. 
 
@@ -137,14 +158,14 @@ I built 3 applications around this project.
 
 ## 7 About the Author
 
-**Jostine Ho** is a data scientist who loves building intelligent applications and exploring the exciting possibilities using deep learning. She is interested in computer vision and automation that creates innovative solutions to real-world problems. She holds a masters degree in Petroleum & Geosystems Engineering at The University of Texas at Austin. You can find her on [LinkedIn](https://www.linkedin.com/in/jostinefho)
+**Jostine Ho** is a data scientist who loves building intelligent applications and exploring the exciting possibilities using deep learning. She is interested in computer vision and automation that creates innovative solutions to real-world problems. She holds a masters degree in Petroleum & Geosystems Engineering at The University of Texas at Austin. You can reach her on [LinkedIn](https://www.linkedin.com/in/jostinefho).
 
 ## 8 References
 
-1. [Facial Emotion Recognition (FER2013) Kaggle dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
+1. [*"Dataset: Facial Emotion Recognition (FER2013)"*](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data) ICML 2013 Workshop in Challenges in Representation Learning, June 21 in Atlanta, GA.
 
-2. [Andrej Karpathy's cs231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
+2. [*"Andrej Karpathy's Convolutional Neural Networks (CNNs / ConvNets)"*](http://cs231n.github.io/convolutional-networks/) Convolutional Neural Networks for Visual Recognition (CS231n), Stanford University.
 
 3. Srivastava et al., 2014. *"Dropout: A Simple Way to Prevent Neural Networks from Overfitting"*, Journal of Machine Learning Research, 15:1929-1958.
 
-4. [Facial Emotion Recognition in Real-time](http://cs231n.stanford.edu/reports2016/022_Report.pdf)
+4. Duncan, D., Shine, G., English, C., 2016. [*"Report: Facial Emotion Recognition in Real-time"*](http://cs231n.stanford.edu/reports2016/022_Report.pdf) Convolutional Neural Networks for Visual Recognition (CS231n), Stanford University.
