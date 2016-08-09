@@ -44,7 +44,7 @@ As I was exploring the dataset, I discovered an imbalance of the “disgust” c
 
 ## 3 The Model
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/mrbean.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/mrbean.png" width="200" align="middle"/>
 <h4 align="center"> Figure 3. Mr. Bean, the model for the model.</h4>
 </p>
 
@@ -61,7 +61,7 @@ A typical architecture of a convolutional neural network has an input layer, con
 *  The convolution step generates **feature maps** that represent the unique ways pixel values are enhanced, for example, edge and pattern detection. In Figure 4, a feature map is created by applying filter 1 across the entire image. Other filters are applied one after another creating a set of feature maps. 
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv_maxpool.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv_maxpool.png" width="600" align="middle"/>
 <h4 align="center">Figure 4. Convolution and 1st max-pooling used in the network</h4>
 </p>
 
@@ -81,55 +81,55 @@ A typical architecture of a convolutional neural network has an input layer, con
 To begin with, I built a simple version of the CNN: input, convolution, dense, and output layer. As it turns out, the simple model preformed terribly. The low accuracy of 0.1500 shows that it is merely random guessing an emotion. The model is too simple to pick up the subtle details in facial expressions. This could only mean one thing…
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/inception.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/inception.png" width="500" align="middle"/>
 </p>
 
 This is the where deep learning comes in. Given the pattern complexity of facial expressions, it is necessary to build with a deeper architecture in order to pick up enough signals. So I tested various net architectures that goes from complex to more complex. I played around with three components: number of convolutional layers, portions of dropout, and number of dense layers. In the end, my final net architecture was 9 layers deep in convolution with one max-pooling after every three convolution layers as seen in figure below. 
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" width="500" align="middle"/>
 <h4 align="center">Figure 5. Facial Emotion Recognition CNN Architecture.</h4>
 </p>
 
 As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 6 and 7 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. 
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv64pool2.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv64pool2.png" width="400"align="middle"/>
 <h4 align="center">Figure 6. CNN (64-filter) feature maps after 2nd layer of max-pooling.</h4>
 </p>
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" width="600" align="middle"/>
 <h4 align="center">Figure 7. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
 </p>
 
 ## 4 Model Validation
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/works_every_time.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/works_every_time.png" width="500" align="middle"/>
 </p>
 
 As it turns out, the final CNN had a validation accuracy of 58%. This makes a lot of sense, because it is hard to use one label to classify each facial expression. Our expressions usually consist a combination of emotions. When the model predicts incorrectly on one label, the correct label is often the second most likely emotion as in examples in Figure 8 with blue labels.
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/predictions.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/predictions.png" width="700" align="middle"/>
 <h4 align="center">Figure 8. Random 24 examples in test set validation.</h4>
 </p>
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" width="300" align="middle"/>
 <h4 align="center">Figure 9. True emotion label and model prediction count on test set.</h4>
 </p>
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
 <h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
 </p>
 
 ## 5 Applications
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" alt="alt text" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" width="400" align="middle"/>
 <h4 align="center">Figure 11. Application pipeline.</h4>
 </p>
 
