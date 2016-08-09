@@ -1,7 +1,7 @@
 
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/cover.png" alt="alt text" align="middle"/>
 
-*A facial emotion recognition system built with deep convolutional neural network*
+*built with deep convolutional neural network and ❤️*
 
 ## Table of Contents
 1. [Motivation](#1-motivation)
