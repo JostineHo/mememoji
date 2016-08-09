@@ -7,7 +7,7 @@
 1. [Motivation](#1-motivation)
 2. [The Database](#2-the-database)
 3. [The Model](#3-the-model)
-	* [3.1 Input Layer](#3.1-input-layer)
+	* [3.1 Input Layer](#31-input-layer)
 	* [3.2 Convolutional Layers](#convolutional-layers)  
 	* [3.3 Dense Layers](#dense-layers)
 	* [3.4 Output Layer](#output-layer)
