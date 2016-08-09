@@ -11,7 +11,7 @@
 	* [3.2 Convolutional Layers](#32-convolutional-layers)  
 	* [3.3 Dense Layers](#33-dense-layers)
 	* [3.4 Output Layer](#34-output-layer)
-	* [3.5 Deep Learning](#35-deep-learning)
+	* [3.5 Deep Learning](#35-deep-learning) (in progress)
 4. [Model Validation](#4-model-validation) (in progress)
 	* [4.1 Performance](#41-performance)
 	* [4.2 Analysis](#42-analysis)
