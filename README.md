@@ -1,7 +1,7 @@
 
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/cover.png" alt="alt text" align="middle"/>
 
-*A facial emotion recognition system built with deep convolutional neural network*
+*built with deep convolutional neural network and ❤️*
 
 ## Table of Contents
 1. [Motivation](#1-motivation)
@@ -54,7 +54,7 @@ As I was exploring the dataset, I discovered an imbalance of the “disgust” c
 Deep learning is a popular technique used in computer vision. I chose convolutional neural network (CNN) layers as building blocks to create my model architecture. CNNs are known to imitate how the human brain works when analyzing visuals. I will use a picture of Mr. Bean as an example to explain how images are fed into the model, because who doesn’t love Mr. Bean?
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" width="500" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" width="650" align="middle"/>
 <h4 align="center">Figure 5. Facial Emotion Recognition CNN Architecture (modification from Eindhoven University of Technology-PARsE).</h4>
 </p>
 
@@ -104,7 +104,7 @@ This is where **deep learning** comes in. Given the pattern complexity of facial
 + Comparison Tables
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" width="500" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" width="300" align="middle"/>
 <h4 align="center">Figure 5. Facial Emotion Recognition CNN Architecture.</h4>
 </p>
 
@@ -114,14 +114,15 @@ This is where **deep learning** comes in. Given the pattern complexity of facial
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/works_every_time.png" width="500" align="middle"/>
 </p>
-####4.1 Performance
+###4.1 Performance
 As it turns out, the final CNN had a **validation accuracy of 58%**. This makes a lot of sense, because it is hard to use one label to classify each facial expression. Our expressions usually consist a combination of emotions. When the model predicts incorrectly on one label, the correct label is often the second most likely emotion as in examples in Figure 8 with blue labels.
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/predictions.png" width="700" align="middle"/>
 <h4 align="center">Figure 8. Random 24 examples in test set validation.</h4>
 </p>
-####4.2 Analysis
+
+###4.2 Analysis
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" width="300" align="middle"/>
 <h4 align="center">Figure 9. True emotion label and model prediction count on test set.</h4>
