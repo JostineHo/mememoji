@@ -109,11 +109,11 @@ Models with various combinations were trained and evaluated using GPU computing 
 ```
 table or graph
 ```
-In the end, my final net architecture was 9 layers deep in convolution with one max-pooling after every three convolution layers as seen in figure below.
+In the end, my final net architecture was 9 layers deep in convolution with one max-pooling after every three convolution layers as seen in figure #.
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/mynetarch.png" width="600" align="middle"/>
-<h4 align="center">Figure 1. An overview of FER2013.</h4>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/mynetarch.png" width="850" align="middle"/>
+<h4 align="center">Figure #. Final model CNN architecture.</h4>
 </p>
 
 ## 4 Model Validation
