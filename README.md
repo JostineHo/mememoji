@@ -52,11 +52,11 @@ As I was exploring the dataset, I discovered an imbalance of the “disgust” c
 
 Deep learning is a popular technique used in computer vision. I chose convolutional neural network (CNN) layers as building blocks to create my model architecture. CNNs are known to imitate how the human brain works when analyzing visuals. I will use a picture of Mr. Bean as an example to explain how images are fed into the model, because who doesn’t love Mr. Bean?
 
-A typical architecture of a convolutional neural network will contain an input layer, some convolutional layers, some dense layers (aka. fully-connected layers), and an output layer. These are linearly stacked layers ordered in sequence. In [Keras](https://keras.io/models/sequential/), the model is created as `Sequential()` and more layers are added to build architecture.
+A typical architecture of a convolutional neural network will contain an input layer, some convolutional layers, some dense layers (aka. fully-connected layers), and an output layer (Figure 4). These are linearly stacked layers ordered in sequence. In [Keras](https://keras.io/models/sequential/), the model is created as `Sequential()` and more layers are added to build architecture.
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/netarch.png" width="650" align="middle"/>
-<h4 align="center">Figure 5. Facial Emotion Recognition CNN Architecture (modification from Eindhoven University of Technology-PARsE).</h4>
+<h4 align="center">Figure 4. Facial Emotion Recognition CNN Architecture (modification from Eindhoven University of Technology-PARsE).</h4>
 </p>
 
 ###3.1 Input Layer
@@ -65,30 +65,34 @@ A typical architecture of a convolutional neural network will contain an input l
 
 ###3.2 Convolutional Layers
 + The numpy array gets passed into the `Convolution2D` layer where I specify the number of filters as one of the hyperparameters. The __set of filters__(aka. kernel) are unique with randomly generated weights. Each filter, (3, 3) receptive field, slides across the original image with __shared weights__ to create a __feature map__.
-+  __Convolution__ generates feature maps that represent how pixel values are enhanced, for example, edge and pattern detection. In Figure 4, a feature map is created by applying filter 1 across the entire image. Other filters are applied one after another creating a set of feature maps.
++  __Convolution__ generates feature maps that represent how pixel values are enhanced, for example, edge and pattern detection. In Figure 5, a feature map is created by applying filter 1 across the entire image. Other filters are applied one after another creating a set of feature maps.
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv_maxpool.png" width="600" align="middle"/>
-<h4 align="center">Figure 4. Convolution and 1st max-pooling used in the network</h4>
+<h4 align="center">Figure 5. Convolution and 1st max-pooling used in the network</h4>
 </p>
 
 + __Pooling__ is a dimension reduction technique usually applied after one or several convolutional layers. It is an important step when building CNNs as adding more convolutional layers can greatly affect computational time. I used a popular pooling method called `MaxPooling2D` that uses (2, 2) windows across the feature map only keeping the maximum pixel value. The pooled pixels form an image 
-with dimentions reduced by 4 as seen in Figure 4.
+with dimentions reduced by 4.
 
 ###3.3 Dense Layers
 + The dense layer (aka fully connected layers), is inspired by the way neurons transmit signals through the brain. It takes a large number of input features and transform features through layers connected with trainable weights.
+
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/forward_back_prop.png" width="750" align="middle"/>
+<h4 align="center">Figure 6. Neural network during training: Forward propagation (left) to Backward propagation (right).</h4>
+</p>
+
 + The network can be initialized by applying random weights to the interconnected layers. These weights can then be trained using __back propagation__ with labeled data. Back propagation looks at errors produced in the output and back calculates the weight corrections to every layer before. The weights are gradually adjusted as we feed in more training data allowing the model to learn patterns.
-```
-equation and figure
-```
+	```
+	equations
+	```
 + By tuning the hyper-parameters, such as __learning rate__ and __network density__, we can control the training speed and the complexity of the network architecture.
 + Essentially, the more layers/density we increase in the model the better it can pick up signals. As good as it may sound, the model also becomes increasingly prone to overfitting the training data. One method to prevent overfitting and generalize on unseen data is to apply __dropout__. Dropout randomly selects a portion (usually less than 50%) of nodes to set their weights to zero during training. This method can effectively control the model's sensitivity to noise in the training data while maintaining the necessary complexity of the architecture.
 
 ###3.4 Output Layer
 + Instead of using sigmoid activation function, I used **softmax** at the output layer. This output presents itself as a probability for each emotion class.
-```
-figure
-```
+
 + Therefore, the model is able to show the detail probability composition of the emotions in the face. As later on, you will see that it is not efficient to classify human facial expression as only a single emotion. Our expressions are usually much complex and contain a mix of emotions that could be used to accurately describe a particular expression.
 
 > It is important to note that there is no specific formula to building a neural network that would guarantee to work well. Different problems would require different network architecture and a lot of trail and errors to produce desirable validation accuracy. __This is the reason why neural nets are often perceived as "black box algorithms."__ But don't be discouraged. Time is not wasted when experimenting to find the best model and you will gain valuable experience. 
@@ -105,15 +109,11 @@ This is where deep learning comes in. Given the pattern complexity of facial exp
 + __number and configuration of dense layers__ 
 + __dropout percentage in dense layers__
 
-Models with various combinations were trained and evaluated using GPU computing `g2.2xlarge` on Amazon Web Services (AWS). This greatly reduced training time and increased efficiency in tuning the model (Pro tip: use _automation script_ and _tmux detach_ to train on AWS EC2 instance over night).
-```
-table or graph
-```
-In the end, my final net architecture was 9 layers deep in convolution with one max-pooling after every three convolution layers as seen in figure #.
+Models with various combinations were trained and evaluated using GPU computing `g2.2xlarge` on Amazon Web Services (AWS). This greatly reduced training time and increased efficiency in tuning the model (Pro tip: use _automation script_ and _tmux detach_ to train on AWS EC2 instance over night). In the end, my final net architecture was 9 layers deep in convolution with one max-pooling after every three convolution layers as seen in Figure 7.
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/mynetarch.png" width="850" align="middle"/>
-<h4 align="center">Figure #. Final model CNN architecture.</h4>
+<h4 align="center">Figure 7. Final model CNN architecture.</h4>
 </p>
 
 ## 4 Model Validation
@@ -125,7 +125,7 @@ In the end, my final net architecture was 9 layers deep in convolution with one 
 As it turns out, the final CNN had a __validation accuracy of 58%__. This actually makes a lot of sense. Because our expressions usually consist a combination of emotions, and _only_ using one label to represent a facial expression is rather inappropriate. In this case, when the model predicts incorrectly on one label, the correct label is often the __second most likely emotion__ as in Figure 8 (examples with light blue labels).
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/predictions.png" width="700" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/predictions.png" width="850" align="middle"/>
 <h4 align="center">Figure 8. Prediction of 24 example faces randomly selected from test set.</h4>
 </p>
 
@@ -144,26 +144,26 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.3 Computer Vision
-As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 6 and 7 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
+As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 10 and 11 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv64pool2.png" width="400"align="middle"/>
-<h4 align="center">Figure 6. CNN (64-filter) feature maps after 2nd layer of max-pooling.</h4>
+<h4 align="center">Figure 10. CNN (64-filter) feature maps after 2nd layer of max-pooling.</h4>
 </p>
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" width="600" align="middle"/>
-<h4 align="center">Figure 7. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
+<h4 align="center">Figure 11. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
 </p>
 
 ## 5 Application Requirements
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" width="400" align="middle"/>
-<h4 align="center">Figure 11. Application pipeline.</h4>
+<h4 align="center">Figure 12. Application pipeline.</h4>
 </p>
 
-I built 3 applications around this project.
+I built 3 applications for this project.
 
 ###5.1 RESTful API
  + built on AWS EC2 instance
@@ -191,9 +191,6 @@ requirements...
 ```
 
 ## 6 Next Steps
-
-+ maxout
-+ collective emotion score
 
 (to be continued...)
 
