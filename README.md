@@ -144,23 +144,23 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.3 Computer Vision
-As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 10 and 11 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
+As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 11 and 12 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv64pool2.png" width="400"align="middle"/>
-<h4 align="center">Figure 10. CNN (64-filter) feature maps after 2nd layer of max-pooling.</h4>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/L4_compviz.png" width="800"align="middle"/>
+<h4 align="center">Figure 11. CNN (64-filter) feature maps after 2nd layer of max-pooling.</h4>
 </p>
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" width="600" align="middle"/>
-<h4 align="center">Figure 11. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
+<h4 align="center">Figure 12. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
 </p>
 
 ## 5 Application Requirements
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" width="400" align="middle"/>
-<h4 align="center">Figure 12. Application pipeline.</h4>
+<h4 align="center">Figure 13. Application pipeline.</h4>
 </p>
 
 I built 3 applications for this project.
@@ -168,15 +168,15 @@ I built 3 applications for this project.
 ###5.1 RESTful API
  + built on AWS EC2 instance
  + with mongoDB feedback storage
- + Find source code here.
- + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) $$/leftarrow $$ Try it!
+ + Find source code here...
+ + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) Try it!
 ```
 requirements...
 ```
 
 ###5.2 Interactive Web App
 + Find the app: [MemeMoji --the app](http://54.227.229.33:5000/static/FaceX/index.html) Try it!
-+ Find source code here [link]
++ Find source code here...
 + special thanks link to chris' repo
 ```
 requirements...
@@ -185,7 +185,7 @@ requirements...
 ###5.3 Real-Time Prediction via Webcam
 + example picture
 + Real-time emotion prediction OpenCV
-+ Find source code here [link]
++ Find source code here...
 ```
 requirements...
 ```
