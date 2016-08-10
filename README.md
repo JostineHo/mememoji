@@ -105,11 +105,7 @@ This is where deep learning comes in. Given the pattern complexity of facial exp
 + __number and configuration of dense layers__ 
 + __dropout percentage in dense layers__
 
-Models with various combinations were trained and evaluated using GPU computing `g2.2xlarge` on Amazon Web Services (AWS). This greatly reduced training time and increased efficiency in tuning the model (Tip: use _automation script_ and _tmux detach_ to train on AWS EC2 instance over night).
-
-+ Analysis of various arch
-+ Comparison Tables
-
+Models with various combinations were trained and evaluated using GPU computing `g2.2xlarge` on Amazon Web Services (AWS). This greatly reduced training time and increased efficiency in tuning the model (Pro tip: use _automation script_ and _tmux detach_ to train on AWS EC2 instance over night).
 ```
 table or graph
 ```
@@ -132,20 +128,21 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.2 Analysis
++ model prediction
+
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" width="300" align="middle"/>
 <h4 align="center">Figure 9. True emotion label and model prediction count on test set.</h4>
 </p>
 
++ model weakness
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
 <h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
 </p>
 
 ###4.3 Computer Vision
-As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 6 and 7 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling.
-
-+ check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html)
+As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 6 and 7 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv64pool2.png" width="400"align="middle"/>
@@ -170,7 +167,7 @@ I built 3 applications around this project.
  + built on AWS EC2 instance
  + with mongoDB feedback storage
  + Find source code here.
- + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) $/leftarrow$ Try it!
+ + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) $$/leftarrow $$ Try it!
 ```
 requirements...
 ```
