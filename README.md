@@ -125,17 +125,17 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.2 Analysis
-+ statistical analysis of results
-
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" width="300" align="middle"/>
-<h4 align="center">Figure 9. True emotion label and model prediction count on test set.</h4>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
+<h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
 </p>
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
 <h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
 </p>
+
++ statistical analysis of results
 
 ###4.3 Computer Vision
 As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 11 and 12 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
@@ -151,7 +151,6 @@ As a result, the feature maps become increasingly abstract down the pipeline whe
 </p>
 
 ## 5 Application Requirements
-
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" width="400" align="middle"/>
 <h4 align="center">Figure 13. Application pipeline.</h4>
@@ -163,7 +162,7 @@ I built 3 applications for this project.
  + built on AWS EC2 instance
  + integrated with mongoDB to log feedback
  + Find source code here...[link]
- + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) Try it!
+ + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) (currently moving to new server)
 ```
 requirements...
 ```
@@ -171,7 +170,7 @@ requirements...
 ###5.2 Interactive Web App
 + Find source code here... 
 + Special thanks to my collaboration partner Chris Impicciche, Web Development Fellow at Galvanize. 
-+ [MemeMoji --the app](http://54.227.229.33:5000/static/FaceX/index.html) Try it!
++ [MemeMoji --the app](http://54.227.229.33:5000/static/FaceX/index.html) (currently moving to new server)
 ```
 requirements...
 ```
