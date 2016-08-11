@@ -10,7 +10,7 @@
 	* [3.2 Convolutional Layers](#32-convolutional-layers)  
 	* [3.3 Dense Layers](#33-dense-layers)
 	* [3.4 Output Layer](#34-output-layer)
-	* [3.5 Deep Learning](#35-deep-learning) (in progress)
+	* [3.5 Deep Learning](#35-deep-learning)
 4. [Model Validation](#4-model-validation) (in progress)
 	* [4.1 Performance](#41-performance)
 	* [4.2 Analysis](#42-analysis)
@@ -125,14 +125,13 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.2 Analysis
-+ model prediction
++ statistical analysis of results
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/true_pred.png" width="300" align="middle"/>
 <h4 align="center">Figure 9. True emotion label and model prediction count on test set.</h4>
 </p>
 
-+ model weakness
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
 <h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
@@ -162,31 +161,32 @@ I built 3 applications for this project.
 
 ###5.1 RESTful API
  + built on AWS EC2 instance
- + with mongoDB feedback storage
- + Find source code here...
+ + integrated with mongoDB to log feedback
+ + Find source code here...[link]
  + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) Try it!
 ```
 requirements...
 ```
 
 ###5.2 Interactive Web App
-+ Find the app: [MemeMoji --the app](http://54.227.229.33:5000/static/FaceX/index.html) Try it!
-+ Find source code here...
-+ special thanks link to chris' repo
++ Find source code here... 
++ Special thanks to my collaboration partner Chris Impicciche, Web Development Fellow at Galvanize. 
++ [MemeMoji --the app](http://54.227.229.33:5000/static/FaceX/index.html) Try it!
 ```
 requirements...
 ```
 
 ###5.3 Real-Time Prediction via Webcam
-+ example picture
++ add example picture
 + Real-time emotion prediction OpenCV
-+ Find source code here...
++ Find source code here...[link]
 ```
 requirements...
 ```
 
 ## 6 Next Steps
 
++ crowd emotion monitoring system for events (low cost, candid survey on large scale)
 (to be continued...)
 
 ## 7 About the Author
