@@ -187,6 +187,7 @@ requirements...
 ## 6 Next Steps
 
 + crowd emotion monitoring system for events (low cost, candid survey on large scale)
+
 (to be continued...)
 
 ## 7 About the Author
