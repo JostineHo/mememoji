@@ -15,13 +15,12 @@
 	* [4.1 Performance](#41-performance)
 	* [4.2 Analysis](#42-analysis)
 	* [4.3 Computer Vision](#43-computer-vision)
-5. [Application Requirements](#5-application-requirements) (in progress)
+5. [Application Requirements](#5-application-requirements)
 	* [5.1 RESTful API](#51-restful-api)
 	* [5.2 Interactive Web App](#52-interactive-web-app)
 	* [5.3 Real-Time Prediction via Webcam](#53-real-time-prediction-via-webcam)
-6. [Next Steps](#6-next-steps)  (in progress)
-7. [About the Author](#7-about-the-author)
-8. [References](#8-references)
+6. [About the Author](#7-about-the-author)
+7. [References](#8-references)
 
 ## 1 Motivation
 Human facial expressions can be easily classified into 7 basic emotions: happy, sad, surprise, fear, anger, disgust, and neutral. Our facial emotions are expressed through activation of specific sets of facial muscles. These sometimes subtle, yet complex, signals in an expression often contain an abundant amount of information about our state of mind. Through facial emotion recognition, we are able to measure the effects that content and services have on the audience/users through an easy and low-cost procedure. For example, retailers may use these metrics to evaluate __customer interest__. Healthcare providers can provide better service by using additional information about __patients' emotional state__ during treatment. Entertainment producers can monitor __audience engagement__ in events to consistently create desired content.
@@ -125,17 +124,17 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.2 Analysis
-<p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
-<h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
-</p>
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
-<h4 align="center">Figure 10. Confusion matrix for true and prediction emotion counts.</h4>
+<h4 align="center">Figure 9. Confusion matrix for true and prediction emotion counts.</h4>
 </p>
 
-+ statistical analysis of results
+<p align="center">
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/correct_emotion.png" width="850" align="middle"/>
+<h4 align="center">Figure 10. Correct predictions on 2nd and 3rd highest probable emotion.</h4>
+</p>
+
 
 ###4.3 Computer Vision
 As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 11 and 12 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
@@ -158,42 +157,31 @@ As a result, the feature maps become increasingly abstract down the pipeline whe
 
 I built 3 applications for this project.
 
-###5.1 RESTful API
- + built on AWS EC2 instance
- + integrated with mongoDB to log feedback
- + Find source code here...[link]
- + [Mememoji 3.0.0 RESTful API](http://54.227.229.33:5000/static/swagger-ui-build/index.html) (currently moving to new server)
-```
-requirements...
-```
+###5.1 REST API
+I built a REST API that finds human faces within images and make prediction about each facial emotion in `POST /v1.0.0/predict`. You can paste the url of an image in `image_url` or drag-and-drop an image file to `image_buf `. In addition, you have the option to have the API return the image with annotated faces and cropped thumbnail of each face in base64 by using the dropdown menu in `annotate_image` and `crop_image`. The API returns the probabilities of emotions for each face (indexed) and an unique ID for each image in json format. MongoDB is installed to store input into facial expression database on EC2 for future training. 
+
+`POST /v1.0.0/feedback` can be used to collect user feedback from the web app for incorrect predictions. Developers have to option to send back user feedback (true emotion) by providing the unique ID and face index. The built-in MongoDB will use unique ID `image_id` to find the document and `face_index` to append the true emotion as `feedback` in the database.
+
++ Source Code: https://github.com/JostineHo/mememoji_api
++ Demo: [mememoji.rhobota.com](mememoji.rhobota.com)
 
 ###5.2 Interactive Web App
-+ Find source code here... 
-+ Special thanks to my collaboration partner Chris Impicciche, Web Development Fellow at Galvanize. 
-+ [MemeMoji --the app](http://54.227.229.33:5000/static/FaceX/index.html) (currently moving to new server)
-```
-requirements...
-```
+**Mememoji** is an interactive emotion recognition system that detects emotions based on facial expressions. This app uses the REST API to predict the compositions of the emotions expressed by users. Users have the option to paste image url, upload your own image, or simply turn on your webcam to interact with the app. Users can also provide feedback by selecting the correct emotion from a dropdown menu should the convolutional neural network predicts incorrectly. This will serve as a training sample and help improve the algorithm in the future.
+
+_Special thanks to Chris Impicciche, Web Development Fellow at Galvanize, who made it possible for live demo of the technology._ 
++ Source Code: [FaceX](https://github.com/Peechiz/FaceX)
++ Demo: [mememoji.me](mememoji.me) (currently moving to new server)
 
 ###5.3 Real-Time Prediction via Webcam
-+ add example picture
-+ Real-time emotion prediction OpenCV
-+ Find source code here...[link]
-```
-requirements...
-```
+In addition, I built a real-time facial emotion analyzer that can be accessed through a webcam. `real-time.py` overlays a meme face matching the emotion expressed in real-time. `live-plotting` outputs a live-recording graph that responds to the changes in facial expressions. The program uses OpenCV for face detection and the trained neural network for live prediction.
 
-## 6 Next Steps
++ Source Code: [https://github.com/JostineHo/real-time_emotion_analyzer](https://github.com/JostineHo/real-time_emotion_analyzer)
 
-+ crowd emotion monitoring system for events (low cost, candid survey on large scale)
-
-(to be continued...)
-
-## 7 About the Author
+## 6 About the Author
 
 **Jostine Ho** is a data scientist who loves building intelligent applications and exploring the exciting possibilities using deep learning. She is interested in computer vision and automation that creates innovative solutions to real-world problems. She holds a masters degree in Petroleum & Geosystems Engineering at The University of Texas at Austin. You can reach her on [LinkedIn](https://www.linkedin.com/in/jostinefho).
 
-## 8 References
+## 7 References
 
 1. [*"Dataset: Facial Emotion Recognition (FER2013)"*](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data) ICML 2013 Workshop in Challenges in Representation Learning, June 21 in Atlanta, GA.
 
