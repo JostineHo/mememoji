@@ -137,7 +137,9 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 
 
 ###4.3 Computer Vision
-As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 11 and 12 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. __Deep nets are beautiful!__ Check out [Google Deep Dream](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html).
+As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 11 and 12 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. [__Deep nets are beautiful!__](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html). 
+
+**Code for analysis and visualiation of the inter-layer outputs in the convolutional neural net:** https://github.com/JostineHo/mememoji/blob/master/data_visualization.ipynb
 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/L4_compviz.png" width="800"align="middle"/>
@@ -148,6 +150,9 @@ As a result, the feature maps become increasingly abstract down the pipeline whe
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" width="600" align="middle"/>
 <h4 align="center">Figure 12. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
 </p>
+
+
+
 
 ## 5 The Apps
 <p align="center">
