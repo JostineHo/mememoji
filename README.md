@@ -15,7 +15,7 @@
 	* [4.1 Performance](#41-performance)
 	* [4.2 Analysis](#42-analysis)
 	* [4.3 Computer Vision](#43-computer-vision)
-5. [Application Requirements](#5-application-requirements)
+5. [The Apps](#5-the-apps)
 	* [5.1 RESTful API](#51-restful-api)
 	* [5.2 Interactive Web App](#52-interactive-web-app)
 	* [5.3 Real-Time Prediction via Webcam](#53-real-time-prediction-via-webcam)
@@ -149,33 +149,34 @@ As a result, the feature maps become increasingly abstract down the pipeline whe
 <h4 align="center">Figure 12. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
 </p>
 
-## 5 Application Requirements
+## 5 The Apps
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" width="400" align="middle"/>
-<h4 align="center">Figure 13. Application pipeline.</h4>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/system.png" width="500" align="middle"/>
+<h4 align="center">Figure 13. Web application and REST API.</h4>
 </p>
-
-I built 3 applications for this project.
 
 ###5.1 REST API
 I built a REST API that finds human faces within images and make prediction about each facial emotion in `POST /v1.0.0/predict`. You can paste the url of an image in `image_url` or drag-and-drop an image file to `image_buf `. In addition, you have the option to have the API return the image with annotated faces and cropped thumbnail of each face in base64 by using the dropdown menu in `annotate_image` and `crop_image`. The API returns the probabilities of emotions for each face (indexed) and an unique ID for each image in json format. MongoDB is installed to store input into facial expression database on EC2 for future training. 
 
 `POST /v1.0.0/feedback` can be used to collect user feedback from the web app for incorrect predictions. Developers have to option to send back user feedback (true emotion) by providing the unique ID and face index. The built-in MongoDB will use unique ID `image_id` to find the document and `face_index` to append the true emotion as `feedback` in the database.
 
-+ Source Code: https://github.com/JostineHo/mememoji_api
-+ Demo: [mememoji.rhobota.com](mememoji.rhobota.com)
+**Source Code:** https://github.com/JostineHo/mememoji_api
+
+**Demo:** [mememoji.rhobota.com](mememoji.rhobota.com)
 
 ###5.2 Interactive Web App
 **Mememoji** is an interactive emotion recognition system that detects emotions based on facial expressions. This app uses the REST API to predict the compositions of the emotions expressed by users. Users have the option to paste image url, upload your own image, or simply turn on your webcam to interact with the app. Users can also provide feedback by selecting the correct emotion from a dropdown menu should the convolutional neural network predicts incorrectly. This will serve as a training sample and help improve the algorithm in the future.
 
-_Special thanks to Chris Impicciche, Web Development Fellow at Galvanize, who made it possible for live demo of the technology._ 
-+ Source Code: [FaceX](https://github.com/Peechiz/FaceX)
-+ Demo: [mememoji.me](mememoji.me) (currently moving to new server)
+_Special thanks to Chris Impicciche, Web Development Fellow at Galvanize, who made it possible for online demo of the technology._
+
+**Source Code:** [FaceX](https://github.com/Peechiz/FaceX)
+
+**Demo:** [mememoji.me](mememoji.me) (currently moving to new server)
 
 ###5.3 Real-Time Prediction via Webcam
 In addition, I built a real-time facial emotion analyzer that can be accessed through a webcam. `real-time.py` overlays a meme face matching the emotion expressed in real-time. `live-plotting` outputs a live-recording graph that responds to the changes in facial expressions. The program uses OpenCV for face detection and the trained neural network for live prediction.
 
-+ Source Code: [https://github.com/JostineHo/real-time_emotion_analyzer](https://github.com/JostineHo/real-time_emotion_analyzer)
+**Source Code**: [https://github.com/JostineHo/real-time_emotion_analyzer](https://github.com/JostineHo/real-time_emotion_analyzer)
 
 ## 6 About the Author
 
