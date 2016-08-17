@@ -1,6 +1,6 @@
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/cover.png" alt="alt text" align="middle"/>
 
-<p align="center"><i>built with deep convolutional neural network and ❤️</i></p>
+<p align="center"><i>a project built with deep convolutional neural network and ❤️ in </i><b>2-weeks time</b></p>
 
 ## Table of Contents
 1. [Motivation](#1-motivation)
@@ -11,7 +11,7 @@
 	* [3.3 Dense Layers](#33-dense-layers)
 	* [3.4 Output Layer](#34-output-layer)
 	* [3.5 Deep Learning](#35-deep-learning)
-4. [Model Validation](#4-model-validation) (in progress)
+4. [Model Validation](#4-model-validation)
 	* [4.1 Performance](#41-performance)
 	* [4.2 Analysis](#42-analysis)
 	* [4.3 Computer Vision](#43-computer-vision)
@@ -124,17 +124,21 @@ As it turns out, the final CNN had a __validation accuracy of 58%__. This actual
 </p>
 
 ###4.2 Analysis
-
+ 
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/confusion_matrix.png" width="400" align="middle"/>
 <h4 align="center">Figure 9. Confusion matrix for true and prediction emotion counts.</h4>
 </p>
 
+Let's take a closer look at predictions for individual emotions. Figure 9 is the confusion matrix for the model predictions on the test set. The matrix gives the counts of emotion predictions and some insights to the performance of the multi-class classification model:
++ The model performs really well on classifying **positive emotions** resulting in relatively high precision scores for happy and surprised. **Happy** has a precision of 76.7% which could be explained by having the most examples (~7000) in the training set. Interestingly, **surprise** has a precision of 69.3% having the least examples in the training set. There must be very strong signals in the suprise expressions. 
++ Model performance seems weaker across **negative emotions** on average. In particularly, the emotion **sad** has a low precision of only 39.7%. The model frequently misclassified angry, fear and neutral as sad. In addition, it is most confused when predicting sad and neutral faces because these two emotions are probably the least expressive (excluding crying faces).  
++ Frequency of prediction that misclassified by less than 3 ranks.
+
 <p align="center">
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/correct_emotion.png" width="850" align="middle"/>
 <h4 align="center">Figure 10. Correct predictions on 2nd and 3rd highest probable emotion.</h4>
 </p>
-
 
 ###4.3 Computer Vision
 As a result, the feature maps become increasingly abstract down the pipeline when more pooling layers are added. Figure 11 and 12 gives an idea of what the machine sees in feature maps after 2nd and 3rd max-pooling. [__Deep nets are beautiful!__](https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html). 
@@ -150,9 +154,6 @@ As a result, the feature maps become increasingly abstract down the pipeline whe
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/conv128pool3.png" width="600" align="middle"/>
 <h4 align="center">Figure 12. CNN (128-filter) feature maps after 3nd layer of max-pooling.</h4>
 </p>
-
-
-
 
 ## 5 The Apps
 <p align="center">
