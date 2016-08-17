@@ -136,7 +136,7 @@ Let's take a closer look at predictions for individual emotions. Figure 9 is the
 + Frequency of prediction that misclassified by less than 3 ranks.
 
 <p align="center">
-<img src="https://github.com/JostineHo/mememoji/blob/master/figures/correct_emotion.png" width="850" align="middle"/>
+<img src="https://github.com/JostineHo/mememoji/blob/master/figures/correct_emotion.png" width="250" align="middle"/>
 <h4 align="center">Figure 10. Correct predictions on 2nd and 3rd highest probable emotion.</h4>
 </p>
 
