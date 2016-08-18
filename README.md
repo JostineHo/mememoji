@@ -177,7 +177,7 @@ _Special thanks to Chris Impicciche, Web Development Fellow at Galvanize, who ma
 
 **Source Code:** [FaceX](https://github.com/Peechiz/FaceX)
 
-**Demo:** [mememoji.me](mememoji.me) (currently moving to new server)
+**Demo:** [mememoji.me](https://mememoji.me/)
 
 ###5.3 Real-Time Prediction via Webcam
 In addition, I built a real-time facial emotion analyzer that can be accessed through a webcam. `real-time.py` overlays a meme face matching the emotion expressed in real-time. `live-plotting` outputs a live-recording graph that responds to the changes in facial expressions. The program uses OpenCV for face detection and the trained neural network for live prediction.
