@@ -1,6 +1,7 @@
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/cover.png" alt="alt text" align="middle"/>
 
-<p align="center"><i>a project built with deep convolutional neural network and ❤️ 
+<p align="center"><i>a project built with deep convolutional neural network and ❤️ <i>
+
 
 ## Table of Contents
 1. [Motivation](#1-motivation)
