@@ -1,6 +1,6 @@
 <img src="https://github.com/JostineHo/mememoji/blob/master/figures/cover.png" alt="alt text" align="middle"/>
 
-<p align="center"><i>a project built with deep convolutional neural network and ❤️ in </i><b>2-weeks time</b></p>
+<p align="center"><i>a project built with deep convolutional neural network and ❤️ 
 
 ## Table of Contents
 1. [Motivation](#1-motivation)
